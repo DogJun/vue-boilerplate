@@ -18,16 +18,16 @@ const baseConfig = {
   entry: ['@babel/polyfill', path.resolve(__dirname, 'src/index.js')],
   module: {
     rules: [
-      {
-        enforce: "pre",
-        test: /\.(js|vue)$/,
-        exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
-        loader: "eslint-loader",
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
-      },
+      // {
+      //   enforce: "pre",
+      //   test: /\.(js|vue)$/,
+      //   exclude: /node_modules/,
+      //   include: path.resolve(__dirname, 'src'),
+      //   loader: "eslint-loader",
+      //   options: {
+      //     formatter: require('eslint-friendly-formatter')
+      //   }
+      // },
       { 
         test: /\.vue$/,
         use: 'vue-loader'
@@ -79,7 +79,7 @@ const baseConfig = {
                     'ie >= 8'
                   ]
                 }),
-                require('postcss-px2rem')({remUnit: 75}), // 设计稿750
+                require('postcss-px2rem')({'remUnit': 75, 'baseDpr':2}), // 设计稿750
                 require('cssnano')()
               ])
             }
@@ -110,7 +110,7 @@ const baseConfig = {
         loader: 'url-loader',
         options: {
           limit: 8192, // 单位是 Byte，当文件小于 8KB 时作为 DataURL 处理
-          name: isProd ? 'assets/images/[name].[hash:8].[ext]' : 'assets/images/[name].[ext]'
+          name: isProd ? 'assets/images/[name].[hash:5].[ext]' : 'assets/images/[name].[ext]'
         }
       },
       {
@@ -118,7 +118,7 @@ const baseConfig = {
         loader: 'url-loader',
         options: {
           limit: 8192,
-          name: isProd ? 'assets/fonts/[name].[hash:8].[ext]' : 'assets/fonts/[name].[ext]'
+          name: isProd ? 'assets/fonts/[name].[hash:5].[ext]' : 'assets/fonts/[name].[ext]'
         }
       },
     ]
@@ -175,7 +175,7 @@ const baseConfig = {
       'common': path.join(__dirname, 'src/common')
     },
     // 省略后缀
-    extensions: ['*', '.js', '.json', '.vue']
+    extensions: ['.js', '.json', '.vue', '.less']
   }
 }
 
