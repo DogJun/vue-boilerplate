@@ -1,127 +1,287 @@
 <template>
   <div class="home">
-    <!-- <img class="img" src="../../common/img/dog.jpg" alt="dog"> -->
-    <button @click="alert">
-			Alert
-		</button>
-    <button @click="confirm">
-			confirm
-		</button>
-    <button @click="loading">
-			loading
-		</button>
-    <button @click="toast">
-			toast
-		</button>
-    <button @click="picker">
-      picker
-    </button>
-    <picker @select="handleSelect(arguments)"
-      :selected-index="selectedIndex"
-      ref="picker"
-      :title="pickerTitle">
-    </picker>
-    <btn @btnClick="btnClick"/>
-    <error/>
+    <div class="tab" @click="tabHandle">
+      <div class="tab-item" id="order" :class="{ 'tab-item_active': tab === 'order' }">交付预约</div>
+      <div class="tab-item" id="my" :class="{ 'tab-item_active': tab === 'my' }">我的预约</div>
+    </div>
+    <div class="order-list" v-if="tab === 'order'">
+      <div class="list-item">
+        <div class="list-item-left">
+          <p class="title">交付测试数据测试交付测试数据测试交付测试数据测试</p>
+          <p class="desc">交付内容：花中原三期-住宅花中原三期-住宅花中原三期-住宅</p>
+          <p class="desc">预约截止：2018-10-31 12:35</p>
+        </div>
+        <div class="list-item-right">
+          <a class="btn" href="#">预约</a>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-item-left">
+          <p class="title">交付测试数据测试</p>
+          <p class="desc">交付内容：花中原三期-住宅</p>
+          <p class="desc">预约截止：2018-10-31 12:35</p>
+        </div>
+        <div class="list-item-right">
+          <a class="btn" href="#">预约</a>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-item-left">
+          <p class="title">交付测试数据测试</p>
+          <p class="desc">交付内容：花中原三期-住宅</p>
+          <p class="desc">预约截止：2018-10-31 12:35</p>
+        </div>
+        <div class="list-item-right">
+          <a class="btn" href="#">预约</a>
+        </div>
+      </div>
+    </div>
+    <div class="my-list" v-else>
+      <div class="list-item">
+        <div class="box">
+          <div class="box-left">
+            <span class="desc">房间</span>
+          </div>
+          <div class="box-right">
+            <ul>
+              <li>花中原-北区2栋-2504</li>
+              <li>花中原-北区2栋-2504</li>
+              <li>花中原-北区2栋-2504</li>
+            </ul>
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-left">
+            <span class="desc">预约时间</span>
+          </div>
+          <div class="box-right">
+            <span>2018-06-02 09:00~10:00</span>
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-left">
+            <span class="desc">状态</span>
+          </div>
+          <div class="box-right">
+            <span class="label_active">未签到</span>
+          </div>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="box">
+          <div class="box-left">
+            <span class="desc">房间</span>
+          </div>
+          <div class="box-right">
+            <ul>
+              <li>花中原-北区2栋-2504</li>
+              <li>花中原-北区2栋-2504</li>
+              <li>花中原-北区2栋-2504</li>
+            </ul>
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-left">
+            <span class="desc">预约时间</span>
+          </div>
+          <div class="box-right">
+            <span>2018-06-02 09:00~10:00</span>
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-left">
+            <span class="desc">状态</span>
+          </div>
+          <div class="box-right">
+            <span>已取消</span>
+          </div>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="box">
+          <div class="box-left">
+            <span class="desc">房间</span>
+          </div>
+          <div class="box-right">
+            <ul>
+              <li>花中原-北区2栋-2504</li>
+              <li>花中原-北区2栋-2504</li>
+              <li>花中原-北区2栋-2504</li>
+            </ul>
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-left">
+            <span class="desc">预约时间</span>
+          </div>
+          <div class="box-right">
+            <span>2018-06-02 09:00~10:00</span>
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-left">
+            <span class="desc">状态</span>
+          </div>
+          <div class="box-right">
+            <span>已签到</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import picker from 'components/picker'
-import btn from 'components/btn'
-import error from 'components/error'
-const list = [
-  {
-    text: '1',
-    value: 1
-  },
-  {
-    text: '2',
-    value: 2
-  },
-  {
-    text: '3',
-    value: 3
-  },
-  {
-    text: '4',
-    value: 4
-  },
-  {
-    text: '5',
-    value: 5
-  },
-  {
-    text: '6',
-    value: 6
-  },
-  {
-    text: '7',
-    value: 7
-  },
-  {
-    text: '8',
-    value: 8
-  },
-  {
-    text: '9',
-    value: 9
-  }
-]
+import {getList} from '../../api'
 export default {
   name: 'home',
   data () {
     return {
-      pickerTitle: '',
-      selectedIndex: [0]
+      tab: 'order' // order: 预约列表 my: 我的预约
     }
   },
+  created () {
+    getList({type: 'delivery'}).then(res => {
+      console.log(res)
+    })
+  },
   mounted () {
-    // picker组件初始化数据
-    this.$refs.picker.setData([list])
-    this.$refs.picker.setSelectedIndex([0])
   },
   components: {
-    picker,
-    btn,
-    error
   },
   methods: {
-    btnClick () {
-      console.log('点击了')
-    },
-    alert () {
-      this.$alert('第一个弹窗')
-    },
-    confirm () {
-      this.$confirm('确定吗？')
-    },
-    loading () {
-      this.$loading.show()
-      setTimeout(() => {
-        this.$loading.hide()
-      }, 2000)
-    },
-    toast () {
-      this.$toast('当前时段已无剩余名额，请重新选择')
-    },
-    picker () {
-      let picker = this.$refs.picker
-      picker.show()
-    },
-    // picker 选择 handle
-    handleSelect (args) {
-      console.log(args[2].join(', '))
+    tabHandle (e) {
+      console.log(e.target.id)
+      if (e.target.id === 'order') {
+        this.tab = 'order'
+      } else {
+        this.tab = 'my'
+      }
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
-  .img {
-    width: 750px;
-    height: 750px;
-    border: 1px solid #ddd;/*no*/
+  @import "~common/styles/variables.less";
+  @import "~common/styles/mixin.less";
+  .tab {
+    width: 100%;
+    height: 90px;
+    line-height: 90px;
+    font-size: 0;
+    color: @shallow-font-color;
+    background: #fff;
+    margin-bottom: 20px;
+    .tab-item {
+      display: inline-block;
+      width: 50%;
+      font-size: 28px;/*px*/ 
+      text-align: center;
+      &.tab-item_active {
+        position: relative;
+        color: @font-color;
+        font-size: 500;
+        &:after {
+          content: '';
+          width: 60px;
+          height: 8px;
+          background: linear-gradient(90deg,@shallow-theme 0%,@theme 100%);
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          margin-left: -30px;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+  // 预约列表
+  .order-list {
+    background: #fff;
+    .list-item {
+      padding: 30px 30px 30px 0;
+      margin-left: 30px;
+      font-size: 0;
+      .border-bottom-1px();
+      .list-item-left {
+        display: inline-block;
+        vertical-align: middle;
+        width: 522px;
+        .title {
+          font-size: 32px;
+          line-height: 1.8;
+          color: @font-color;
+          .text-overflow();
+        }
+        .desc{
+          font-size: 28px;
+          line-height: 1.8;
+          color: @shallow-font-color;
+        }
+      }
+      .list-item-right {
+        display: inline-block;
+        vertical-align: middle;
+        width: 168px;
+        .btn {
+          display: inline-block;
+          width: 168px;
+          height: 60px;
+          line-height: 60px;
+          font-size: 28px;/*px*/
+          color: #fff;
+          text-align: center;
+          background: linear-gradient(90deg,@shallow-theme 0%,@theme 100%);
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+  // 我的预约
+  .my-list {
+    background: #fff;
+    .list-item {
+      padding: 30px 30px 30px 0;
+      margin-left: 30px;
+      position: relative;
+      &:before {
+        content: '';
+        display: block;
+        width: 16px;
+        height: 28px;
+        position: absolute;
+        right: 40px;
+        top: 50%;
+        margin-top: -14px;
+        background-image: url('../../common/img/arrow-left.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      .border-bottom-1px();
+      .box {
+        font-size: 0;
+        .box-left {
+          display: inline-block;
+          vertical-align: top;
+          width: 156px;
+          font-size: 30px;
+          line-height: 1.8;
+          color: @shallow-font-color;
+        }
+        .box-right {
+          display: inline-block;
+          vertical-align: top;
+          width: 534px;
+          font-size: 30px;
+          line-height: 1.8;
+          color: @font-color;
+          .label_active {
+            color: @theme;
+          }
+        }
+      }
+    }
   }
 </style>
 

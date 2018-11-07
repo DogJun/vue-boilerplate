@@ -34,6 +34,7 @@ export default {
 </script>
 
 <style scoped lang="less">
+  @import "~common/styles/variables.less";
   .btn {
     a {
       display: block;
@@ -47,7 +48,7 @@ export default {
       box-sizing: border-box;
       border: none;
       color: #fff;
-      background: linear-gradient(90deg,rgba(255,184,66,1) 0%,rgba(243,152,0,1) 100%);
+      background: linear-gradient(90deg,@shallow-theme 0%,@theme 100%);
     }
   } 
 </style>

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
+    "build:test": "webpack --mode production --e test",
     "build": "webpack --mode production",
     "analysis": "webpack --mode production --profile --json > stats.json",
     "lint": "eslint --ext .js ./src",

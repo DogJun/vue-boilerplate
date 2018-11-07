@@ -305,14 +305,14 @@
           right: 0;
           padding-right: 32px;
           &:active {
-            color: #fdc2a5;
+            color: #606060;
           }
         }
         .cancel {
           left: 0;
           padding-left: 32px;
           &:active {
-            color: #c2c2c2;
+            color: #606060;
           }
         }
       }

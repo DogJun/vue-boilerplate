@@ -1,3 +1,4 @@
+@import "./variables.less";
 .bg-image(@url) {
   background-image: url("@{url}@2x.png");
   @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
@@ -72,49 +73,49 @@
   transform-origin: 0 0;
 }
 
-.border-top-1px(@color: transparent, @w: 1px) {
+.border-top-1px(@color: @border-color, @w: 1px) {
   position: relative;
-  border-top: @w solid @color;
+  border-top: @w solid @color;/*no*/
   @media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio: 2) {
       border: none;
       &:after {
-          border-top: @w solid @color;
+          border-top: @w solid @color;/*no*/
           .border-2x-common();
       }
   }
 }
 
-.border-left-1px(@color: transparent, @w: 1px) {
+.border-left-1px(@color: @border-color, @w: 1px) {
   position: relative;
-  border-left: @w solid @color;
+  border-left: @w solid @color;/*no*/
   @media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio: 2) {
       border: none;
       &:after {
-          border-left: @w solid @color;
+          border-left: @w solid @color;/*no*/
           .border-2x-common();
       }
   }
 }
 
-.border-bottom-1px(@color: transparent, @w: 1px) {
+.border-bottom-1px(@color: @border-color, @w: 1px) {
   position: relative;
-  border-bottom: @w solid @color;
+  border-bottom: @w solid @color;/*no*/
   @media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio: 2) {
       border: none;
       &:after {
-          border-bottom: @w solid @color;
+          border-bottom: @w solid @color;/*no*/
           .border-2x-common();
       }
   }
 }
 
-.border-right-1px(@color: transparent, @w: 1px) {
+.border-right-1px(@color: @border-color, @w: 1px) {
   position: relative;
-  border-right: @w solid @color;
+  border-right: @w solid @color;/*no*/
   @media (-webkit-min-device-pixel-ratio:2), (min-device-pixel-ratio: 2) {
       border: none;
       &:after {
-          border-right: @w solid @color;
+          border-right: @w solid @color;/*no*/
           .border-2x-common();
       }
   }

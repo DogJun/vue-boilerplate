@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
@@ -13,7 +14,7 @@ const SpeedMeasurePlugin = require("speed-measure-webpack-plugin")
 const smp = new SpeedMeasurePlugin()
 // const DashboardPlugin = require('webpack-dashboard/plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-
+const envConfig = require('./config/webpack.env.conf')
 const baseConfig = {
   entry: ['@babel/polyfill', path.resolve(__dirname, 'src/index.js')],
   module: {
@@ -148,6 +149,9 @@ const baseConfig = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
+    new webpack.DefinePlugin({
+      'process.env': envConfig
+    }),
     new HtmlWebPackPlugin({
       template: './src/public/index.html',
       filename: './index.html',

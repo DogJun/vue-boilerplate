@@ -1,5 +1,5 @@
+import request from './request'
 
-// import http from '../utils/http'
-
-export default {
+export const getList = (param) => {
+  request.post('/retesting/weixin/appointment/list', param)
 }
