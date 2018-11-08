@@ -5,48 +5,27 @@
       <div class="tab-item" id="my" :class="{ 'tab-item_active': tab === 'my' }">我的预约</div>
     </div>
     <div class="order-list" v-if="tab === 'order'">
-      <div class="list-item">
+      <div class="list-item" v-if="orderList.length" v-for="item in orderList" :key="item.id">
         <div class="list-item-left">
-          <p class="title">交付测试数据测试交付测试数据测试交付测试数据测试</p>
-          <p class="desc">交付内容：花中原三期-住宅花中原三期-住宅花中原三期-住宅</p>
-          <p class="desc">预约截止：2018-10-31 12:35</p>
+          <p class="title">{{item.subject}}</p>
+          <p class="desc">交付内容：{{item.buildings}}</p>
+          <p class="desc">预约截止：{{item.enroll_end}}</p>
         </div>
         <div class="list-item-right">
-          <a class="btn" href="#">预约</a>
-        </div>
-      </div>
-      <div class="list-item">
-        <div class="list-item-left">
-          <p class="title">交付测试数据测试</p>
-          <p class="desc">交付内容：花中原三期-住宅</p>
-          <p class="desc">预约截止：2018-10-31 12:35</p>
-        </div>
-        <div class="list-item-right">
-          <a class="btn" href="#">预约</a>
-        </div>
-      </div>
-      <div class="list-item">
-        <div class="list-item-left">
-          <p class="title">交付测试数据测试</p>
-          <p class="desc">交付内容：花中原三期-住宅</p>
-          <p class="desc">预约截止：2018-10-31 12:35</p>
-        </div>
-        <div class="list-item-right">
-          <a class="btn" href="#">预约</a>
+          <router-link class="btn" :to="{ name: 'order', params: { id: item.id }}">预约1</router-link>
+          
         </div>
       </div>
     </div>
     <div class="my-list" v-else>
-      <div class="list-item">
+      <div class="list-item" v-if="myList.length" v-for="(item, index) in myList" :key="index">
         <div class="box">
           <div class="box-left">
             <span class="desc">房间</span>
           </div>
           <div class="box-right">
             <ul>
-              <li>花中原-北区2栋-2504</li>
-              <li>花中原-北区2栋-2504</li>
-              <li>花中原-北区2栋-2504</li>
+              <li v-for="room in item.rooms" :key="room.roo_id">{{room.room_name}}</li>
             </ul>
           </div>
         </div>
@@ -55,7 +34,7 @@
             <span class="desc">预约时间</span>
           </div>
           <div class="box-right">
-            <span>2018-06-02 09:00~10:00</span>
+            <span>{{item.interval_date}} {{item.start_time && item.start_time.slice(11, 16)}}~{{item.end_time && item.end_time.slice(11, 16)}}</span>
           </div>
         </div>
         <div class="box">
@@ -63,67 +42,7 @@
             <span class="desc">状态</span>
           </div>
           <div class="box-right">
-            <span class="label_active">未签到</span>
-          </div>
-        </div>
-      </div>
-      <div class="list-item">
-        <div class="box">
-          <div class="box-left">
-            <span class="desc">房间</span>
-          </div>
-          <div class="box-right">
-            <ul>
-              <li>花中原-北区2栋-2504</li>
-              <li>花中原-北区2栋-2504</li>
-              <li>花中原-北区2栋-2504</li>
-            </ul>
-          </div>
-        </div>
-        <div class="box">
-          <div class="box-left">
-            <span class="desc">预约时间</span>
-          </div>
-          <div class="box-right">
-            <span>2018-06-02 09:00~10:00</span>
-          </div>
-        </div>
-        <div class="box">
-          <div class="box-left">
-            <span class="desc">状态</span>
-          </div>
-          <div class="box-right">
-            <span>已取消</span>
-          </div>
-        </div>
-      </div>
-      <div class="list-item">
-        <div class="box">
-          <div class="box-left">
-            <span class="desc">房间</span>
-          </div>
-          <div class="box-right">
-            <ul>
-              <li>花中原-北区2栋-2504</li>
-              <li>花中原-北区2栋-2504</li>
-              <li>花中原-北区2栋-2504</li>
-            </ul>
-          </div>
-        </div>
-        <div class="box">
-          <div class="box-left">
-            <span class="desc">预约时间</span>
-          </div>
-          <div class="box-right">
-            <span>2018-06-02 09:00~10:00</span>
-          </div>
-        </div>
-        <div class="box">
-          <div class="box-left">
-            <span class="desc">状态</span>
-          </div>
-          <div class="box-right">
-            <span>已签到</span>
+            <span :class="{ label_active: item.status === '未签到' }">{{item.status}}</span>
           </div>
         </div>
       </div>
@@ -132,17 +51,21 @@
 </template>
 
 <script>
-import {getList} from '../../api'
+import {getList} from 'api'
 export default {
   name: 'home',
   data () {
     return {
-      tab: 'order' // order: 预约列表 my: 我的预约
+      tab: 'order', // order: 预约列表 my: 我的预约
+      orderList: [],
+      myList: []
     }
   },
   created () {
+    // 开发环境先写死app_mid
     getList({type: 'delivery'}).then(res => {
-      console.log(res)
+      this.orderList = res.data.list
+      this.myList = res.data.my_list
     })
   },
   mounted () {
@@ -151,7 +74,6 @@ export default {
   },
   methods: {
     tabHandle (e) {
-      console.log(e.target.id)
       if (e.target.id === 'order') {
         this.tab = 'order'
       } else {

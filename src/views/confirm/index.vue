@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import btn from 'components/btn'
+import btn from 'widgets/btn'
 import picker from 'components/picker'
 
 const numList = [

@@ -13,11 +13,6 @@ export default new Router({
       name: 'home',
       component: () => import(/* webpackChunkName: 'home' */'views/home/index.vue')
     },
-    {
-      path: '/demo',
-      name: 'demo',
-      component: () => import(/* webpackChunkName: 'demo' */'views/demo/index.vue')
-    },
     // 交付预约
     {
       path: '/order',
@@ -30,5 +25,11 @@ export default new Router({
       name: 'confirm',
       component: () => import(/* webpackChunkName: 'confirm' */'views/confirm/index.vue')
     },
+    // 预约详情
+    {
+      path: '/detail',
+      name: 'detail',
+      component: () => import(/* webpackChunkName: 'detail' */'views/detail/index.vue')
+    }
   ]
 })

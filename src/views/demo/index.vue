@@ -28,7 +28,7 @@
 
 <script>
 import picker from 'components/picker'
-import btn from 'components/btn'
+import btn from 'widgets/btn'
 import error from 'components/error'
 const list = [
   {

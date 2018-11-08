@@ -176,7 +176,8 @@ const baseConfig = {
       'utils': path.join(__dirname, 'src/utils'),
       'assets': path.join(__dirname, 'src/assets'),
       'widgets': path.join(__dirname, 'src/widgets'),
-      'common': path.join(__dirname, 'src/common')
+      'common': path.join(__dirname, 'src/common'),
+      'api': path.join(__dirname, 'src/api')
     },
     // 省略后缀
     extensions: ['.js', '.json', '.vue', '.less']

@@ -1,35 +1,28 @@
 <template>
   <div class="order">
     <div class="banner">
-      <img src="../../common/img/dog.jpg" alt="banner">
+      <img :src="data.cover_url" alt="banner">
     </div>
     <div class="info">
       <div class="info-title">
-        <p>20180531交付预约测试 </p>
+        <p>{{data.subject}}</p>
       </div>
       <div class="info-content">
         <div class="box">
           <div class="box-left">预约截止</div>
-          <div class="box-right">2018-06-02 18:30</div>
+          <div class="box-right">{{data.enroll_end}}</div>
         </div>
         <div class="box">
           <div class="box-left">项目地址</div>
-          <div class="box-right">测试数据测试地址<span class="icon-addr"></span></div>
+          <div class="box-right">{{data.location}}<span class="icon-addr"></span></div>
         </div>
         <div class="box">
           <div class="box-left">咨询电话</div>
-          <div class="box-right"><a class="tel" href="tel:0755-8355687">0755-8355687</a></div>
+          <div class="box-right"><a class="tel" :href="'tel:' + data.contact_number">{{data.contact_number}}</a></div>
         </div>
       </div>
     </div>
-    <div class="notice clearfix">
-      <div class="notice-left pull-left">
-        <span class="label">交付须知</span>
-      </div>
-      <div class="notice-right pull-right">
-        <a href="#">查看详情<span class="icon-arrow"></span></a>
-      </div>
-    </div>
+    <notice/>
     <div class="list">
       <div class="list-title">
         <span class="label">预约信息</span>
@@ -62,12 +55,44 @@
         </div>
       </div>
     </div>
+    <div class="layer-wrapper">
+      <div class="mask"></div>
+      <div class="layer">
+        <div class="layer-title"></div>
+        <div class="layer-content">
+          <div class="list-item">
+            <div class="time pull-left">
+              <span>2018-05-29 星期二</span>
+            </div>
+            <div class="operation pull-right">
+              <span>58/100</span>
+              <a href="#" class="btn">预约</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import notice from 'widgets/notice'
+import { getDetail } from 'api'
 export default {
-  name: 'order'
+  name: 'order',
+  data () {
+    return {
+      data: {}
+    }
+  },
+  created () {
+    getDetail({id: '39e9fe45-d752-ec83-2481-dd7cc2e5c4de'}).then(res => {
+      this.data = res.data
+    })
+  },
+  components: {
+    notice
+  }
 }
 </script>
 
@@ -202,6 +227,17 @@ export default {
         }
       }
     }
+  }
+}
+.layer-wapper {
+  .mask {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
   }
 }
 </style>
