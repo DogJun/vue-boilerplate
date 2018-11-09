@@ -8,7 +8,7 @@ module.exports = {
     host: '0.0.0.0',
     proxy: {
       '/retesting': {
-        target: 'http://yf-sunf.myyscm.com',
+        target: 'http://yf-test.myyscm.com',
         changeOrigin: true,
       }
     }

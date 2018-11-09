@@ -4,8 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
+  mode: 'hash',
   routes: [
     // 首页
     {
@@ -15,13 +14,13 @@ export default new Router({
     },
     // 交付预约
     {
-      path: '/order',
+      path: '/order/:id',
       name: 'order',
       component: () => import(/* webpackChunkName: 'order' */'views/order/index.vue')
     },
     // 确认预约
     {
-      path: '/confirm',
+      path: '/confirm/:id',
       name: 'confirm',
       component: () => import(/* webpackChunkName: 'confirm' */'views/confirm/index.vue')
     },
@@ -30,6 +29,12 @@ export default new Router({
       path: '/detail',
       name: 'detail',
       component: () => import(/* webpackChunkName: 'detail' */'views/detail/index.vue')
+    },
+    // 交付须知
+    {
+      path: '/inform/:id',
+      name: 'inform',
+      component: () => import(/* webpackChunkName: 'inform' */'views/inform/index.vue')
     }
   ]
 })

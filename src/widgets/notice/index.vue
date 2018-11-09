@@ -4,14 +4,20 @@
       <span class="label">交付须知</span>
     </div>
     <div class="notice-right pull-right">
-      <a href="#">查看详情<span class="icon-arrow"></span></a>
+      <router-link :to="{ name: 'inform', params: { id }}">查看详情<span class="icon-arrow"></span></router-link>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'notice'
+  name: 'notice',
+  props: {
+    id: {
+      type: String,
+      default: ''
+    }
+  }
 }
 </script>
 

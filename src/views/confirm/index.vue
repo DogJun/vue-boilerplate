@@ -56,20 +56,20 @@
         <textarea placeholder="请填写补充说明"></textarea>
         <span>200</span>
       </div>
-      <btn text="提交"/>
+    </div>
+    <btn text="提交"/>
       <picker @select="handleSelect(arguments)"
         :selected-index="selectedIndex"
         ref="picker"
         :title="pickerTitle">
       </picker>
-    </div>
   </div>
 </template>
 
 <script>
 import btn from 'widgets/btn'
 import picker from 'components/picker'
-
+import { getOrderDetail } from 'api'
 const numList = [
   {
     text: '1',
@@ -116,6 +116,12 @@ export default {
       selectedIndex: [0],
       num: 1
     }
+  },
+  created () {
+    console.log(this.$route.params.id)
+    getOrderDetail({id: this.$route.params.id}).then(res => {
+      console.log(res)
+    })
   },
   components: {
     btn,
