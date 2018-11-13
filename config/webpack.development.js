@@ -7,8 +7,8 @@ module.exports = {
     disableHostCheck: true,
     host: '0.0.0.0',
     proxy: {
-      '/retesting': {
-        target: 'http://yf-test.myyscm.com',
+      '/api': {
+        target: 'xxx',
         changeOrigin: true,
       }
     }
